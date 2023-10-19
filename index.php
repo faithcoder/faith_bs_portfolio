@@ -2,9 +2,9 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="<?php echo get_template_directory_uri(  ); ?>/assets/img/avataaars.svg" alt="..." />
+                <img class="masthead-avatar mb-5" src="<?php echo get_theme_mod('banner_image'); ?>" alt="..." />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
+                <h1 class="masthead-heading text-uppercase mb-0"><?php echo get_theme_mod('banner_heading'); ?></h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -12,7 +12,7 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
+                <p class="masthead-subheading font-weight-light mb-0"><?php echo get_theme_mod('banner_subheading'); ?></p>
             </div>
         </header>
 
@@ -56,37 +56,37 @@
                     </div>
 
                     <!-- Portfolio Modal 1-->
-<div class="portfolio-modal modal fade" id="<?php echo esc_attr($modal_id); ?>" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
-     <div class="modal-dialog modal-xl">
-         <div class="modal-content">
-             <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-             <div class="modal-body text-center pb-5">
-                 <div class="container">
-                     <div class="row justify-content-center">
-                         <div class="col-lg-8">
-                             <!-- Portfolio Modal - Title-->
-                             <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0"><?php the_title();?></h2>
-                             <!-- Icon Divider-->
-                             <div class="divider-custom">
-                                 <div class="divider-custom-line"></div>
-                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                 <div class="divider-custom-line"></div>
-                             </div>
-                             <!-- Portfolio Modal - Image-->
-                             <img class="img-fluid rounded mb-5" src="<?php the_post_thumbnail_url();?>" alt="..." />
-                             <!-- Portfolio Modal - Text-->
-                             <p class="mb-4"><?php the_content(); ?></p>
-                             <button class="btn btn-primary" data-bs-dismiss="modal">
-                                 <i class="fas fa-xmark fa-fw"></i>
-                                 Close Window
-                             </button>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
+                    <div class="portfolio-modal modal fade" id="<?php echo esc_attr($modal_id); ?>" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                <div class="modal-body text-center pb-5">
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-8">
+                                                <!-- Portfolio Modal - Title-->
+                                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0"><?php the_title();?></h2>
+                                                <!-- Icon Divider-->
+                                                <div class="divider-custom">
+                                                    <div class="divider-custom-line"></div>
+                                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                                    <div class="divider-custom-line"></div>
+                                                </div>
+                                                <!-- Portfolio Modal - Image-->
+                                                <img class="img-fluid rounded mb-5" src="<?php the_post_thumbnail_url();?>" alt="..." />
+                                                <!-- Portfolio Modal - Text-->
+                                                <p class="mb-4"><?php the_content(); ?></p>
+                                                <button class="btn btn-primary" data-bs-dismiss="modal">
+                                                    <i class="fas fa-xmark fa-fw"></i>
+                                                    Close Window
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <?php 
                         endwhile;

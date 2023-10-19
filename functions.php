@@ -1,21 +1,20 @@
 <?php 
 
-function add_theme_scripts() {
-	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
+include_once('inc/portfolio-custom-post.php');
+
+function add_theme_scripts() {
+	
 	wp_enqueue_style( 'montserrat-font', '//fonts.googleapis.com/css?family=Montserrat:400,700' );
 	wp_enqueue_style( 'lato-font', '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' );
 	wp_enqueue_style( 'main-css', get_template_directory_uri() . '/css/styles.css', array(), '1.1', 'all' );
+	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
-	
-	
-	wp_enqueue_script( 'main-script', get_template_directory_uri() . '/js/scripts.js', true);
 	// Enqueue my scripts.
+	wp_enqueue_script( 'main-script', get_template_directory_uri() . '/js/scripts.js', true);
+
     wp_enqueue_script( 'main-bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', array(), null, true );
     wp_enqueue_script( 'sb', 'https://cdn.startbootstrap.com/sb-forms-latest.js', array(), null, true );
-   
-
-	
 
 	
 }
@@ -49,23 +48,6 @@ function register_my_menus() {
    }
    add_action( 'init', 'register_my_menus' );
 
-   function amader_custom_post_type() {
-	register_post_type('portfolio-post',
-		array(
-			'labels'      => array(
-				'name'          => __( 'PortFolio', 'textdomain' ),
-				'singular_name' => __( 'PortFolio', 'textdomain' ),
-			),
-			'public'      => true,
-			'has_archive' => true,
-			'supports' => array('title','thumbnail', 'editor'),
-			'rewrite'     => array( 'slug' => 'portfolio' ), // my custom slug
-		)
-	);
-}
-add_action('init', 'amader_custom_post_type');
-
-
 function add_specific_menu_location_atts( $atts, $item, $args ) {
     // check if the item is in the primary menu
     if( $args->theme_location == 'header-menu' ) {
@@ -89,4 +71,54 @@ function add_custom_css_class_to_menu_item($classes, $item, $args, $depth) {
 add_filter('nav_menu_css_class', 'add_custom_css_class_to_menu_item', 10, 4);
 
 
-//https://teamtreehouse.com/community/open-posts-in-popup-window 
+function hello_customizer($wp_customize){
+
+	$wp_customize->add_panel( 'menus', array(
+	'title' => __( 'Theme Settings' ),
+	'description' => "hello", // Include html tags such as <p>.
+	'priority' => 160, // Mixed with top-level-section hierarchy.
+	) );
+	
+	
+	$wp_customize->add_section('banner_section', array(
+	'title' => __('Banner Section', 'b255'),
+	'priority' => 10,
+	'panel' => 'menus'
+	));
+	$wp_customize->add_setting('banner_heading', array(
+	'default' => __('Hello World'),
+	'transport' => 'postMessage',
+	));
+	$wp_customize->add_control('banner-heading-control',array(
+	'label' => __('Write Heading', 'b255'),
+	'type' => 'text',
+	'settings' => 'banner_heading',
+	'section' => 'banner_section',
+	));
+	$wp_customize->add_setting('banner_subheading', array(
+	'default' => __('amader text area'),
+	));
+	
+			
+	$wp_customize->add_control('banner-text-control',array(
+	'label' => __('Write Sub Heading', 'b255'),
+	'type' => 'textarea',
+	'settings' => 'banner_subheading',
+	'section' => 'banner_section',
+	));
+
+	$wp_customize->add_setting('banner_image', array(
+	'default' => __(''),
+	));
+
+	$wp_customize->add_control(	new WP_Customize_Image_Control(	$wp_customize,'banner-img-control',
+		array(
+			'label' => __( 'Upload a Banner Image', 'theme_name' ),
+			'section' => 'banner_section',
+			'settings' => 'banner_image',
+			'context' => 'your_setting_context'
+			)
+		));
+}
+
+add_action('customize_register', 'hello_customizer');

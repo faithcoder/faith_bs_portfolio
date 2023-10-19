@@ -12,7 +12,19 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#page-top">
+                    <?php if (has_custom_logo()) : ?>
+                        <div class="site-logo">
+                            <?php the_custom_logo(); ?>
+                        </div>
+                    <?php else : ?>
+                        <h1 class="site-title">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a>
+                        </h1>
+                    <?php endif; ?>
+                </a>
+
+               
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
