@@ -4,11 +4,9 @@
                 <div class="row">
                     <!-- Footer Location-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Location</h4>
+                        <h4 class="text-uppercase mb-4"><?php echo get_theme_mod("address_title"); ?></h4>
                         <p class="lead mb-0">
-                            2215 John Daniel Drive
-                            <br />
-                            Clark, MO 65243
+                        <?php echo get_theme_mod("address_desc"); ?>
                         </p>
                     </div>
                     <!-- Footer Social Icons-->

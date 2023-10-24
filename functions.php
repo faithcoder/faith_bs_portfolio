@@ -78,7 +78,7 @@ function hello_customizer($wp_customize){
 	$wp_customize->add_panel( 'menus', array(
 		'title' => __( 'Theme Settings' ),
 		'description' => "hello", // Include html tags such as <p>.
-		'priority' => 160, // Mixed with top-level-section hierarchy.
+		'priority' => 10, // Mixed with top-level-section hierarchy.
 	) );
 	
 	
@@ -235,10 +235,44 @@ function hello_customizer($wp_customize){
         'label' => __('Button border Color', 'your-theme-text-domain'),
         'section' => 'about_section',
     )));
+
+
+	//Footer SECTION
+	$wp_customize->add_section('footer_section', array(
+		'title' => __('Footer Section', 'b255'),
+		'priority' => 15,
+		'panel' => 'menus'
+	));
+	//location controller
+	$wp_customize->add_setting('address_title', array(
+		'default' => __('Location'),
+		'transport' => 'postMessage',
+	));
+	
+	$wp_customize->add_control('footer-location-title',
+	array(
+		'label' => __('Footer Location Title', 'b255'),
+		'type' => 'text',
+		'settings' => 'address_title',
+		'section' => 'footer_section',
+	));
+	//location controller
+	$wp_customize->add_setting('address_desc', array(
+		'default' => __('address details'),
+		'transport' => 'postMessage',
+	));
+	
+	$wp_customize->add_control('address_desc_control',
+	array(
+		'label' => __('Write your Address', 'b255'),
+		'type' => 'textarea',
+		'settings' => 'address_desc',
+		'section' => 'footer_section',
+	));
+
 }
 
 add_action('customize_register', 'hello_customizer');
-
 
 function theme_custom_css() {
     $primary_color = get_theme_mod('primary_color', '#666666'); // Get the custom color or use the default if not set.
