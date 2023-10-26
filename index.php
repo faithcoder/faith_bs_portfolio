@@ -1,5 +1,5 @@
 <?php get_header();?>        <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
+        <header class="masthead text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="<?php echo get_theme_mod('banner_image'); ?>" alt="..." />
@@ -97,7 +97,7 @@
             </div>
         </section>
         <!-- About Section-->
-        <section class="page-section bg-primary text-white mb-0" id="about">
+        <section class="page-section text-white mb-0" id="about">
             <div class="container">
                 <!-- About Section Heading-->
                 <h2 class="page-section-heading text-center text-uppercase text-white"><?php echo get_theme_mod("about_heading"); ?></h2>
@@ -186,7 +186,7 @@
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
-                            <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
+                            <button class="btn btn-xl disabled" id="submitButton" type="submit">Send</button>
                         </form>
                     </div>
                 </div>

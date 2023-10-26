@@ -215,6 +215,7 @@ function hello_customizer($wp_customize){
         'label' => __('Button Text Color', 'your-theme-text-domain'),
         'section' => 'about_section',
     )));
+
 	//primary_bg_color
 	$wp_customize->add_setting('primary_bg_color', array(
         'default' => '#ff0000', // Default color
@@ -237,6 +238,7 @@ function hello_customizer($wp_customize){
     )));
 
 
+
 	//Footer SECTION
 	$wp_customize->add_section('footer_section', array(
 		'title' => __('Footer Section', 'b255'),
@@ -256,7 +258,7 @@ function hello_customizer($wp_customize){
 		'settings' => 'address_title',
 		'section' => 'footer_section',
 	));
-	//location controller
+	//address controller
 	$wp_customize->add_setting('address_desc', array(
 		'default' => __('address details'),
 		'transport' => 'postMessage',
@@ -269,6 +271,59 @@ function hello_customizer($wp_customize){
 		'settings' => 'address_desc',
 		'section' => 'footer_section',
 	));
+	//Footer about Title controller
+	$wp_customize->add_setting('footer_about_title', array(
+		'default' => __('Location'),
+		'transport' => 'postMessage',
+	));
+	
+	$wp_customize->add_control('footer_about_title_control',
+	array(
+		'label' => __('Footer About Title', 'b255'),
+		'type' => 'text',
+		'settings' => 'footer_about_title',
+		'section' => 'footer_section',
+	));
+	//address controller
+	$wp_customize->add_setting('footer_about_desc', array(
+		'default' => __('address details'),
+		'transport' => 'postMessage',
+	));
+	
+	$wp_customize->add_control('footer_about_desc_control',
+	array(
+		'label' => __('Footer About Details', 'b255'),
+		'type' => 'textarea',
+		'settings' => 'footer_about_desc',
+		'section' => 'footer_section',
+	));
+
+	//Style Settings
+	$wp_customize->add_section('style_settings', array(
+		'title' => __('Style Settings', 'b255'),
+		'priority' => 16,
+		'panel' => 'menus'
+	));
+	//Primary BG Color
+	$wp_customize->add_setting('section_bg_color', array(
+        'default' => '#e67e22', // Default color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'section_bg_color', array(
+        'label' => __('Section Background Color', 'your-theme-text-domain'),
+        'section' => 'style_settings',
+    )));
+	//Primary Color
+	$wp_customize->add_setting('section_color', array(
+        'default' => '#d35400', // Default color
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'section_color', array(
+        'label' => __('Site Primary Color', 'your-theme-text-domain'),
+        'section' => 'style_settings',
+    )));
 
 }
 
@@ -278,6 +333,8 @@ function theme_custom_css() {
     $primary_color = get_theme_mod('primary_color', '#666666'); // Get the custom color or use the default if not set.
     $primary_bg_color = get_theme_mod('primary_bg_color', '#dddddd'); // Get the custom color or use the default if not set.
     $button_border_color = get_theme_mod('button_border_color', '#e5e5e5'); // Get the custom color or use the default if not set.
+    $section_bg_color = get_theme_mod('section_bg_color', '#e67e22'); // Get the custom color or use the default if not set.
+    $section_color = get_theme_mod('section_color', '#d35400'); // Get the custom color or use the default if not set.
 
     echo '<style type="text/css">
         /* CSS rules that use the custom color */
@@ -286,6 +343,19 @@ function theme_custom_css() {
             background-color: ' . esc_attr($primary_bg_color) . ';
             border: 3px solid' . esc_attr($button_border_color) . ';
         }
+
+        header.masthead, #about{
+            background-color: ' . esc_attr($section_bg_color) . ';			
+        }
+
+		button, a {
+			color: ' . esc_attr($section_color) . ';
+		}
+
+
+
+
+
     </style>';
 }
 add_action('wp_head', 'theme_custom_css');
